@@ -74,7 +74,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Bothell Local Pulse — What's happening in Bothell right now" },
+      { title: "Bothell Local Pulse" },
       {
         name: "description",
         content:
@@ -88,6 +88,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Bothell Local Pulse" },
+      { name: "description", content: "A weekly Bothell events guide with web and visitor center modes for local happenings, hotel guests, and walk-in visitors." },
+      { property: "og:description", content: "A weekly Bothell events guide with web and visitor center modes for local happenings, hotel guests, and walk-in visitors." },
+      { name: "twitter:description", content: "A weekly Bothell events guide with web and visitor center modes for local happenings, hotel guests, and walk-in visitors." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/074ea07f-3fed-420a-9172-8acefe12d2cf/id-preview-df122e65--1960c860-48d7-4a2a-8808-ea65e70218a9.lovable.app-1779062993924.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/074ea07f-3fed-420a-9172-8acefe12d2cf/id-preview-df122e65--1960c860-48d7-4a2a-8808-ea65e70218a9.lovable.app-1779062993924.png" },
     ],
     links: [
       {
