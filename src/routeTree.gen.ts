@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VisitorCenterRouteImport } from './routes/visitor-center'
 import { Route as SubmitRouteImport } from './routes/submit'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as NewsletterRouteImport } from './routes/newsletter'
@@ -18,6 +19,11 @@ import { Route as BusinessNotesRouteImport } from './routes/business-notes'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const VisitorCenterRoute = VisitorCenterRouteImport.update({
+  id: '/visitor-center',
+  path: '/visitor-center',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SubmitRoute = SubmitRouteImport.update({
   id: '/submit',
   path: '/submit',
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/newsletter': typeof NewsletterRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/submit': typeof SubmitRoute
+  '/visitor-center': typeof VisitorCenterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/newsletter': typeof NewsletterRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/submit': typeof SubmitRoute
+  '/visitor-center': typeof VisitorCenterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/newsletter': typeof NewsletterRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/submit': typeof SubmitRoute
+  '/visitor-center': typeof VisitorCenterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/newsletter'
     | '/sitemap.xml'
     | '/submit'
+    | '/visitor-center'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/newsletter'
     | '/sitemap.xml'
     | '/submit'
+    | '/visitor-center'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/newsletter'
     | '/sitemap.xml'
     | '/submit'
+    | '/visitor-center'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,10 +144,18 @@ export interface RootRouteChildren {
   NewsletterRoute: typeof NewsletterRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SubmitRoute: typeof SubmitRoute
+  VisitorCenterRoute: typeof VisitorCenterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/visitor-center': {
+      id: '/visitor-center'
+      path: '/visitor-center'
+      fullPath: '/visitor-center'
+      preLoaderRoute: typeof VisitorCenterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/submit': {
       id: '/submit'
       path: '/submit'
@@ -204,7 +224,18 @@ const rootRouteChildren: RootRouteChildren = {
   NewsletterRoute: NewsletterRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SubmitRoute: SubmitRoute,
+  VisitorCenterRoute: VisitorCenterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

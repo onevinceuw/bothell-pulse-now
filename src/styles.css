@@ -150,17 +150,33 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4, .font-display {
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
     font-family: var(--font-display);
     letter-spacing: -0.015em;
   }
 }
 
 @layer utilities {
-  .text-river { color: var(--river); }
-  .bg-river { background-color: var(--river); }
-  .text-cedar { color: var(--cedar); }
-  .bg-cedar { background-color: var(--cedar); }
-  .text-moss { color: var(--moss); }
-  .bg-moss { background-color: var(--moss); }
+  .text-river {
+    color: var(--river);
+  }
+  .bg-river {
+    background-color: var(--river);
+  }
+  .text-cedar {
+    color: var(--cedar);
+  }
+  .bg-cedar {
+    background-color: var(--cedar);
+  }
+  .text-moss {
+    color: var(--moss);
+  }
+  .bg-moss {
+    background-color: var(--moss);
+  }
 }
